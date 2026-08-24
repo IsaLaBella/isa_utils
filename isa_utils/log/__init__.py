@@ -25,9 +25,10 @@ Usage:
 
 import logging
 import sys, pathlib
-if __name__ =='__main__': sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()))
 from typing import Dict, List, Any, Tuple
 from threading import main_thread
+
+if __name__ =='__main__': sys.path.append(str(pathlib.Path(__file__).parent.parent.parent.resolve()))
 from isa_utils.text.color.themes import THEME_STANDARD
 from isa_utils.text import color, highlight_args, set_color_scheme, str_combine
 

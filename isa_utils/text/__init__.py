@@ -339,7 +339,7 @@ def format_sequence(_sequence: Sequence, *, seperator = ', ', listFormat = '{}')
 
 def main():
 
-	from log import setup_logging, conclude_logging
+	from isa_utils.log import setup_logging, conclude_logging
 	setup_logging()
 
 	conclude_logging()

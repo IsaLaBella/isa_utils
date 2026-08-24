@@ -1,7 +1,8 @@
 import sys, pathlib
 import threading
 from typing import Any, Callable, Dict, Iterable
-if __name__ =='__main__': sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()))
+
+if __name__ =='__main__': sys.path.append(str(pathlib.Path(__file__).parent.parent.parent.resolve()))
 
 def enforce_argument_type(arg: object, argname: str, type_: type):
 	"""
@@ -70,7 +71,7 @@ def call_with_timeout(
 
 if __name__ == "__main__":
 	
-	from prodtest_utils import log
+	from isa_utils import log
 	import time
 
 	def test_timeout():
