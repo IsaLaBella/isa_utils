@@ -331,19 +331,3 @@ def format_sequence(_sequence: Sequence, *, seperator = ', ', listFormat = '{}')
 	formatString = seperator.join([listFormat] * len(_sequence))
 
 	return formatString
-
-
-# =============================================================================
-# %% MAIN PROGRAM
-# =============================================================================
-
-def main():
-
-	from isa_utils.log import setup_logging, conclude_logging
-	setup_logging()
-
-	conclude_logging()
-
-if __name__ == '__main__':
-
-	main()

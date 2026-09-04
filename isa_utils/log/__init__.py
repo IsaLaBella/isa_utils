@@ -28,7 +28,6 @@ import sys, pathlib
 from typing import Dict, List, Any, Tuple
 from threading import main_thread
 
-if __name__ =='__main__': sys.path.append(str(pathlib.Path(__file__).parent.parent.parent.resolve()))
 from isa_utils.text.color.themes import THEME_STANDARD
 from isa_utils.text import color, highlight_args, set_color_scheme, str_combine
 
@@ -447,15 +446,3 @@ def __log(level: int, msg: str, *args: Any, **kwargs):
 			logger.log(level, highlight_args(msg, *args), **kwargs)
 		else:
 			logger.log(level, msg.format(*args), **kwargs)
-
-if __name__=='__main__':
-	setup_logging(level = logging.VERBOSE)
-
-	verbose("This is a verbose message.")
-	debug("This is a debug message.")
-	info("This is an info message.")
-	warning("This is a warning.")
-	error("This is an error message.")
-	critical("This is a critical message.")
-	
-	conclude_logging()
