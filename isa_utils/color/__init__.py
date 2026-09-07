@@ -112,7 +112,7 @@ class Color():
 
     @property
     def rgb_float(self) -> Tuple[float, float, float]:
-        return (self.r, self.g, self.b)
+        return (self.r_float, self.g_float, self.b_float)
 
     # -------------- Properties: r, g and b as 8-bit unsigned values ------------- #
     
