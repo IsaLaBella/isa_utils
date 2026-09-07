@@ -4,9 +4,9 @@ from typing import Any, Dict, List
 from typing import Sequence, Tuple
 import inspect
 
-from isa_utils.text.color.base import ANSI_RGB, BASE_COLORS
-from isa_utils.text.color.themes import THEME_NONE
-from isa_utils.text.color.base import ANSI_RESET
+from isa_utils.color.base import ANSI_RGB, BASE_COLORS
+from isa_utils.color.themes import THEME_NONE
+from isa_utils.color.base import ANSI_RESET
 
 # ============================================================================ #
 #                                    Colors                                    #

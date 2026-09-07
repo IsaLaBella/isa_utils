@@ -7,7 +7,7 @@
 from typing import Dict
 from typing import Tuple
 
-from isa_utils.text.color.base import BASE_COLORS
+from isa_utils.color.base import BASE_COLORS
 
 THEME_NONE: Dict[str, Tuple[int, int, int]] = {
 	'levelVerbose': BASE_COLORS['none'],

@@ -28,7 +28,7 @@ import sys, pathlib
 from typing import Dict, List, Any, Tuple
 from threading import main_thread
 
-from isa_utils.text.color.themes import THEME_STANDARD
+from isa_utils.color.themes import THEME_STANDARD
 from isa_utils.text import color, highlight_args, set_color_scheme, str_combine
 
 # =============================================================================
