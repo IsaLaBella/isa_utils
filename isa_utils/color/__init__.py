@@ -73,12 +73,13 @@ class Color():
         return self.__color_mode
 
     def __set_color_mode(self, color_mode: COLOR_MODE) -> None:
-
-        if not isinstance(color_mode, COLOR_MODE):
-            raise TypeError(f"Invalid type for color_mode (must be {COLOR_MODE.__name__} or {COLOR_MODE.__class__.__name__}, not {type(color_mode).__name__})")
         
         if color_mode not in COLOR_MODE:
             raise ValueError(f"Invalid value for color mode: {color_mode}.")
+
+        if not isinstance(color_mode, COLOR_MODE):
+            # Convert to enum because values of certain types (such as int(1)) will be "in" color_mode, but will cause problems later on if stored as-is.
+            color_mode = COLOR_MODE(color_mode)
         
         self.__color_mode = color_mode
 
