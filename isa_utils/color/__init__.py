@@ -28,7 +28,7 @@ def _8_bit_unsigned_to_float(value: int, min_float_value: float = 0, max_float_v
 #                                    Classes                                   #
 # ---------------------------------------------------------------------------- #
 
-class COLOR_MODES(Enum):
+class COLOR_MODE(Enum):
 
     FLOAT_0_TO_1 = auto()
     UINT8 = auto()
@@ -45,7 +45,7 @@ class Color():
         self.__g = 0
         self.__b = 0
 
-        self.color_mode = kwargs.get("color_mode", COLOR_MODES.FLOAT_0_TO_1)
+        self.color_mode = kwargs.get("color_mode", COLOR_MODE.FLOAT_0_TO_1)
 
         match len(args):
             case 0:
@@ -69,12 +69,15 @@ class Color():
 
     # -------------------------- Properties: Color Mode -------------------------- #
 
-    def __get_color_mode(self) -> COLOR_MODES:
+    def __get_color_mode(self) -> COLOR_MODE:
         return self.__color_mode
 
-    def __set_color_mode(self, color_mode: COLOR_MODES) -> None:
+    def __set_color_mode(self, color_mode: COLOR_MODE) -> None:
+
+        if not isinstance(color_mode, COLOR_MODE):
+            raise TypeError(f"Invalid type for color_mode (must be {COLOR_MODE.__name__} or {COLOR_MODE.__class__.__name__}, not {type(color_mode).__name__})")
         
-        if color_mode not in COLOR_MODES:
+        if color_mode not in COLOR_MODE:
             raise ValueError(f"Invalid value for color mode: {color_mode}.")
         
         self.__color_mode = color_mode
@@ -142,9 +145,9 @@ class Color():
     def __get_r(self) -> float | int:
 
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 return self.r_float
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 return self.r_8bit
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
@@ -152,9 +155,9 @@ class Color():
     def __set_r(self, value: float | int):
         
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 self.r_float = value
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 self.r_8bit = value
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
@@ -162,9 +165,9 @@ class Color():
     def __get_g(self) -> float:
 
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 return self.g_float
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 return self.g_8bit
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
@@ -172,9 +175,9 @@ class Color():
     def __set_g(self, value: float | int):
         
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 self.g_float = value
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 self.g_8bit = value
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
@@ -182,9 +185,9 @@ class Color():
     def __get_b(self) -> float:
 
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 return self.b_float
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 return self.b_8bit
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
@@ -192,9 +195,9 @@ class Color():
     def __set_b(self, value: float | int):
         
         match self.color_mode:
-            case COLOR_MODES.FLOAT_0_TO_1:
+            case COLOR_MODE.FLOAT_0_TO_1:
                 self.b_float = value
-            case COLOR_MODES.UINT8:
+            case COLOR_MODE.UINT8:
                 self.b_8bit = value
             case _:
                 raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
