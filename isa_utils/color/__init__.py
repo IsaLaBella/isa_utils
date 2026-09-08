@@ -7,6 +7,7 @@ Submodule that implements a basic color class.
 # ---------------------------------------------------------------------------- #
 
 from typing import Any, Tuple, TypeAlias
+from enum import Enum, auto
 
 # ---------------------------------------------------------------------------- #
 #                               Helper Functions                               #
@@ -27,13 +28,10 @@ def _8_bit_unsigned_to_float(value: int, min_float_value: float = 0, max_float_v
 #                                    Classes                                   #
 # ---------------------------------------------------------------------------- #
 
-Color_Mode: TypeAlias = int
-class COLOR_MODES():
+class COLOR_MODES(Enum):
 
-    _MIN = 0 # Minumum value for error checking - do not use
-    FLOAT_0_TO_1 = 1
-    UINT8 = 2
-    _MAX = 3 # Maximum value for error checking - do not use
+    FLOAT_0_TO_1 = auto()
+    UINT8 = auto()
 
 class Color():
 
@@ -71,15 +69,12 @@ class Color():
 
     # -------------------------- Properties: Color Mode -------------------------- #
 
-    def __get_color_mode(self) -> Color_Mode:
+    def __get_color_mode(self) -> COLOR_MODES:
         return self.__color_mode
 
-    def __set_color_mode(self, color_mode: Color_Mode) -> None:
-
-        if not isinstance(color_mode, Color_Mode):
-            raise TypeError(f"Invalid type for color mode: {color_mode.__class__.__name__}")
+    def __set_color_mode(self, color_mode: COLOR_MODES) -> None:
         
-        if color_mode <= COLOR_MODES._MIN or color_mode >= COLOR_MODES._MAX:
+        if color_mode not in COLOR_MODES:
             raise ValueError(f"Invalid value for color mode: {color_mode}.")
         
         self.__color_mode = color_mode
@@ -152,7 +147,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 return self.r_8bit
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
 
     def __set_r(self, value: float | int):
         
@@ -162,7 +157,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 self.r_8bit = value
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
 
     def __get_g(self) -> float:
 
@@ -172,7 +167,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 return self.g_8bit
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
     
     def __set_g(self, value: float | int):
         
@@ -182,7 +177,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 self.g_8bit = value
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
 
     def __get_b(self) -> float:
 
@@ -192,7 +187,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 return self.b_8bit
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
     
     def __set_b(self, value: float | int):
         
@@ -202,7 +197,7 @@ class Color():
             case COLOR_MODES.UINT8:
                 self.b_8bit = value
             case _:
-                raise ValueError(f"{self.__class__.__name__} has invalid value for color_mode ({self.color_mode}).")
+                raise ValueError(f"{self.__class__.__name__} has invalid or not implemented value for color_mode ({self.color_mode}).")
 
     r = property(__get_r, __set_r)
     g = property(__get_g, __set_g)
